@@ -10,12 +10,12 @@ from tkinter import messagebox
 def get_game_id():
     while True:
         root = tk.Tk()
-        root.withdraw()  # hide the root window
+        root.withdraw()
         game_id = simpledialog.askstring("Game ID", "Enter the game ID (CODEX only works):")
-        root.destroy()  # destroy the root window
+        root.destroy()
 
         if game_id is None:
-            sys.exit(0)  # exit the program without showing error message
+            sys.exit(0)
 
         achievements_file = rf'C:\Users\Public\Documents\Steam\CODEX\{game_id}\achievements.ini'
 
@@ -26,7 +26,7 @@ def get_game_id():
         return game_id
 
 root = tk.Tk()
-root.withdraw()  # hide the root window
+root.withdraw()
 
 while True:
     game_id = get_game_id()
@@ -40,7 +40,7 @@ while True:
         achievements = []
         for section in config.sections():
             if section != 'SteamAchievements':
-                achievement = {'name': section.replace('_', ' ').title()}  # Modify the name here
+                achievement = {'name': section.replace('_', ' ').title()}
                 for key, value in config[section].items():
                     if key == 'UnlockTime':
                         value = datetime.datetime.fromtimestamp(int(value)).strftime('%Y-%m-%d %H:%M:%S')
@@ -69,7 +69,7 @@ while True:
                 unlock_time))
 
 
-        root.deiconify()  # show the root window
+        root.deiconify()
         root.title("Achievements")
         root.wm_attributes("-topmost", True)
 
